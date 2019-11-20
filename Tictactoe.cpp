@@ -42,7 +42,7 @@ int main(){
 		cout<<"\nYour Turn "<<player2Name<<" - O: ";
 	} 
 	cin>>choose;
-	if(choose > 10 && choose < 99 && choose%10<4){
+	if(choose > 10 && choose < 99 && choose%10<4 && choose/10 < 4){
 	row = choose/10 - 1;
 	col = choose%10 - 1;
 	if(turn == " X" && arr[row][col] != " X" && arr[row][col] != " O"){
