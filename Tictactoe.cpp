@@ -3,12 +3,12 @@
 
 using namespace std;
 
-char arr[][3] = {'1', '2', '3','4', '5', '6','7', '8', '9'};
+string arr[][3] = {"11", "12", "13","21", "22", "23","31", "32", "33"};
 
 void board();
 int checkWin();
 
-char turn = 'X';
+string turn = " X";
 int row,col,choose;
 string player1Name,player2Name;
 bool draw= false;
@@ -35,28 +35,28 @@ int main(){
 	
 	
 	do{
-	if (turn == 'X'){
+	if (turn == " X"){
 		cout<<"\nYour Turn "<<player1Name<<" - X: ";
 	}
-	else if(turn == 'O'){
+	else if(turn == " O"){
 		cout<<"\nYour Turn "<<player2Name<<" - O: ";
 	} 
 	cin>>choose;
-	
+	if(choose > 10 && choose < 99){
 	row = choose/10 - 1;
 	col = choose%10 - 1;
-
-	if(turn == 'X' && arr[row][col] != 'X' && arr[row][col] != 'O'){
-		turn = 'O';
-		arr[row][col] = 'X';
-	}else if (turn == 'O'&& arr[row][col] != 'X' && arr[row][col] != 'O'){
-		turn = 'X';
-		arr[row][col] = 'O';
+	if(turn == " X" && arr[row][col] != " X" && arr[row][col] != " O"){
+		turn = " O";
+		arr[row][col] = " X";
+	}else if (turn == " O"&& arr[row][col] != " X" && arr[row][col] != " O"){
+		turn = " X";
+		arr[row][col] = " O";
 	}else
 	{
 		cout<<"Car't tick here!\nTick again plzz.\n";
 		system("pause");
 	}
+}	else cout<<"Invalid choose.";
 	system("cls");
 	board();
 	i = checkWin();
@@ -66,7 +66,7 @@ int main(){
 	if( draw == true){
 		cout<<"\nDRAW";
 	}else{
-		if(turn == 'O') cout<<player1Name<<" WIN.";
+		if(turn == " O") cout<<player1Name<<" WIN.";
 		
 		else cout<<player2Name<<" WIN.";
 	}
@@ -79,13 +79,13 @@ int main(){
 //Draw Board
 void board(){
 	cout << "\n\n TIC TAC TOE \n\n";
-	cout << "     |     |    " << endl;
+	cout << "      |      |     " << endl;
 	cout << "  " << arr[0][0]<< "  |  " << arr[0][1] << "  |  " << arr[0][2] << endl;
-	cout << "_____|_____|_____" << endl;
-    cout << "     |     |     " << endl;
+	cout << "______|______|______" << endl;
+    cout << "      |      |      " << endl;
     cout << "  " << arr[1][0] << "  |  " << arr[1][1] << "  |  " << arr[1][2] << endl;
-    cout << "_____|_____|______" << endl;
-    cout << "     |     |     " << endl;
+    cout << "______|______|_______" << endl;
+    cout << "      |      |      " << endl;
     cout << "  " << arr[2][0] << "  |  " << arr[2][1] << "  |  " << arr[2][2] << endl;
 }
 
@@ -97,7 +97,7 @@ int checkWin(){
 			return 1;
 		for (int i = 0; i<3; i++) {
 			for (int j = 0; j<3; j++) {
-				if (arr[i][j] != 'X' && arr[i][j] != 'O') {
+				if (arr[i][j] != " X" && arr[i][j] != " O") {
 					return -1;
 				}
 			}
