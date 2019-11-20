@@ -32,14 +32,15 @@ int main(){
     cout<<"\nEnter Player 1 Name: ";cin>>player1Name;
 	cout<<"Enter Player 2 Name: ";cin>>player2Name;
 	
-	while(checkWin() == 1){
+	while(checkWin() == -1){
 		board();
 		Input(player1Name,player2Name);
 		checkWin();
+		board();
 	}
 	
-	system("cls");
-	board();
+	
+	
     return 0;
 }
 
@@ -55,10 +56,10 @@ void Input(string player1Name, string player2Name){
 	if(turn == "X" && arr[row][col] != "X" && arr[row][col] != "0"){
 		arr[row][col] == "X";
 		turn = "0";
-	}else if (turn == "0" && arr[row][col] != "X" && arr[row][col] != "0"){
+	}else if (turn == "0" && arr[row][col] != "0" && arr[row][col] != "0"){
 		arr[row][col] == "0";
 		turn = "0";
-	}else cout<<"Can't mark here";
+	}else cout<<"Can't tick here \nPlease tick again";
 	Input(player1Name,player2Name);
 	}
 //Draw Board
