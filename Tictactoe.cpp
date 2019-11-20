@@ -3,7 +3,7 @@
 
 using namespace std;
 
-char arr[3][3] = {{'1', '2', '3'},{'4', '5', '6'},{'7', '8', '9'}};
+char arr[][3] = {'1', '2', '3','4', '5', '6','7', '8', '9'};
 
 void board();
 int checkWin();
@@ -11,10 +11,11 @@ int checkWin();
 char turn = 'X';
 int row,col,choose;
 string player1Name,player2Name;
-
+bool draw= false;
 
 int main(){
 	char h;
+	int i;
 	//Welcome Message
 	cout << "Welcome To Tic-tac-toe game! Play with your way! \nIf you find any problem, please contact john.nguyen@gameloft.com \n\n";
     cout << "SELECT YOUR MODE (1 - PLAY GAME | 2 - OTHER TO EXIT GAME): ";
@@ -24,7 +25,7 @@ int main(){
     if (h != '1')
     {
 		cout << "--EXIT GAME--";
-        exit(0);
+        return 0;
     }
     
     //Enter Player Name
@@ -52,12 +53,25 @@ int main(){
 		turn = 'X';
 		arr[row][col] = 'O';
 	}else
-	cout<<"Car't tick here!\nTick again plzz.";
+	{
+		cout<<"Car't tick here!\nTick again plzz.\n";
+		system("pause");
+	}
+	system("cls");
 	board();
+	i = checkWin();
 	}
 	while (checkWin() == -1);
-	
-	
+		
+	if( draw == true){
+		cout<<"\nDRAW";
+	}else{
+		if(turn == 'O') cout<<player1Name<<" WIN.";
+		
+		else cout<<player2Name<<" WIN.";
+	}
+		
+			
     return 0;
 }
 
@@ -76,22 +90,21 @@ void board(){
 }
 
 int checkWin(){
-	if(arr[0][0] == arr[0][1] && arr[0][1] == arr[0][2]){
+	for (int i = 0; i <3; i++) {
+		if (arr[i][0] == arr[i][1] && arr[i][0] == arr[i][2] || arr[0][i] == arr[1][i] && arr[0][i] == arr[2][i])
+			return 1;
+		if (arr[0][0] == arr[1][1] && arr[0][0] == arr[2][2] || arr[0][2] == arr[1][1] && arr[0][2] == arr[2][0])
+			return 1;
+		for (int i = 0; i<3; i++) {
+			for (int j = 0; j<3; j++) {
+				if (arr[i][j] != 'X' && arr[i][j] != 'O') {
+					return -1;
+				}
+			}
+		}
+		draw = true;
 		return 1;
-	} else if (arr[1][0] == arr[1][1] && arr[1][1] == arr[1][2]){
-		return 1;
-	} else if (arr[2][0] == arr[2][1] && arr[2][1] == arr[2][2]){
-		return 1;
-	} else if (arr[0][0] == arr[1][0] && arr[1][0] == arr[2][0]){
-		return 1;
-	} else if (arr[0][1] == arr[1][1] && arr[1][1] == arr[2][1]){
-		return 1;
-	} else if (arr[0][2] == arr[1][2] && arr[1][2] == arr[2][2]){
-		return 1;
-	} else if (arr[0][0] == arr[1][1] && arr[1][1] == arr[2][2]){
-		return 1;
-	} else if (arr[2][0] == arr[1][1] && arr[1][1] == arr[0][2]){
-		return 1;
+
 	}
-	else return -1;
 }
+				
