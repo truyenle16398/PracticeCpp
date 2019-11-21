@@ -10,23 +10,81 @@ struct Student
 	string name;
 	float score;
 };
-vector<Student> listStudent;
 
 void DrawMenu();
-void Input(Student);
+void Input();
+void Display(vector<Student*>);
+vector<Student*> listStudent;
+
 
 int main(){
+	Student* student;
+	int choose;
 	DrawMenu();
-	for(int i = 0; i < 5; i++){
-      cout << "Gia tri cua vec [" << i << "] = " << listStudent[i] << endl;
-   }
+	do{
+		cout<<"Choose: ";cin>>choose;
+		switch (choose){
+		case 1: {
+			Input();
+			break;
+		}
+		case 2: {
+			Display(listStudent);
+			break;
+		}
+		case 0:{
+			cout<<"Exit.....\n";
+			exit(0);
+			break;
+		}
+	}
+	}while(choose!=0);
+	
 	return 0;
 }
 
+void Input(){
+	int n;
+	cout<<"Enter number of student: ";cin>>n;
+	
+	if(n > 0){
+		for(int i = 0; i < n; i++){
+			Student *student = new Student;
+			cout<<"\n---Student "<<i+1<<"--- "<<endl<<endl;
+			
+			cout<<"Enter ID student: "; cin>>student->id;
+			
+			cout<<"Enter Fullname student: ";cin>>student->name;
+			
+			do
+			{
+				cout<<"Enter score: ";cin>>student->score;
+				if(student->score < 0 || student->score > 10){
+				cout<<"Invalid score. \nEnter again.\n";
+			}
+			}
+			while (student->score < 0 || student->score > 10);
+			listStudent.push_back(student);
+	}
+	}else {
+		cout<<"Invalid number";
+		Input();
+	}
+	
+}
+
+void Display(vector<Student*> totalStudent){
+	
+	cout << "ID\tFULL NAME\tSCORE"<<endl;
+	cout << "___________________________________________\n";
+	
+	for (int i = 0; i <= totalStudent.size(); i++)
+	{
+		cout << totalStudent[i]->id << "\t" << totalStudent[i]->name << "\t\t" << totalStudent[i]->score << endl;
+	}
+}
 
 void DrawMenu(){
-	Student student;
-	//draw menu
 	cout<<"------------------MENU------------------"<<endl;
 	cout<<"1. Input"<<endl;
 	cout<<"2. Display"<<endl;
@@ -34,25 +92,7 @@ void DrawMenu(){
 	cout<<"4. Load from file"<<endl;
 	cout<<"0. Exit"<<endl;
 	cout<<"----------------------------------------"<<endl;
-	
-	//input choose
-	int choose;
-	cout<<"Choose: ";cin>>choose;
-	switch (choose){
-		case 1: Input(student);
-	}
 }
 
-void Input(Student student){
-	cout<<"Enter ID student: "; cin>>student.id;
-	cout<<"Enter Fullname student: ";cin>>student.name;
-	
-	do{
-		cout<<"Enter score: ";
-		cin>>student.score;
-		if(student.score < 0 || student.score > 10){
-			cout<<"Invalid score. \nEnter again.\n";
-		}
-	}while (student.score < 0 || student.score > 10);
-	listStudent.push_back(student); 
-}
+
+
