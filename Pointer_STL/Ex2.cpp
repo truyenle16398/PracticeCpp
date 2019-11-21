@@ -6,8 +6,8 @@ int main(){
 	int a[4] = {1, 2, 3, 4};
 	int *p = a;
 	int *p2 = new int;
-	delete p;
-//	delete a; mang a ko phai la con tro nên ko tro toi vung HEAP nen ko the xoa lien ket tu a(STACK) toi HEAP dc. I think so =)) hihi
+//	delete p; p chua duoc cap phat bo nho nen ko the dung delete
+//	delete a; ko the dung delete voi mang a
 	delete p2;
 	
 	return 0;
