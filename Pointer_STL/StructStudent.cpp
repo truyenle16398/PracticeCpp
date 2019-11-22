@@ -64,8 +64,20 @@ void Input() {
 			Student *student = new Student;
 			cout << "\n---Student " << i + 1 << "--- " << endl << endl;
 
-			cout << "Enter ID student: "; cin >> student->id;
-
+			bool duplicated = false;
+			do
+			{
+				cout << "Enter ID student: "; cin >> student->id;
+			
+			for(int i = 0; i < listStudent.size();i++){
+				if(student->id == listStudent[i]->id){
+					cout<<"Duplicated"<<endl;
+					cin.clear();
+					cout << "Enter ID student: ";cin >> student->id;
+				}
+			}
+			}
+			while(duplicated = false);
 
 			cout << "Enter Fullname student: "; /*cin >> student->name;*/
 			cin.ignore();
