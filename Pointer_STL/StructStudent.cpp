@@ -1,6 +1,7 @@
 #include<iostream>
 #include<string>
 #include<vector>
+#include<fstream>
 
 using namespace std;
 
@@ -14,6 +15,8 @@ struct Student
 void DrawMenu();
 void Input();
 void Display(vector<Student*>);
+void SaveToFile(vector<Student*>);
+void LoadFromFile(vector<Student*>);
 vector<Student*> listStudent;
 
 
@@ -31,6 +34,10 @@ int main() {
 		}
 		case 2: {
 			Display(listStudent);
+			break;
+		}
+		case 3:{
+			SaveToFile(listStudent);
 			break;
 		}
 		case 0: {
@@ -55,7 +62,10 @@ void Input() {
 
 			cout << "Enter ID student: "; cin >> student->id;
 
-			cout << "Enter Fullname student: "; cin >> student->name;
+
+			cout << "Enter Fullname student: "; /*cin >> student->name;*/
+			cin.ignore();
+			getline(cin, student->name);
 
 			do
 			{
@@ -94,6 +104,18 @@ void DrawMenu() {
 	cout << "0. Exit" << endl;
 	cout << "----------------------------------------" << endl;
 }
+
+void SaveToFile(vector<Student*> list) {
+	ofstream fo;
+	fo.open("input.txt");
+	for (size_t i = 0; i < list.size(); i++) {
+		fo << list[i]->id << "\t" << list[i]->name << "\t" << list[i]->score << endl;
+	}
+	fo.close();
+	cout<<"Saved to file."<<endl;
+}
+
+
 
 
 
