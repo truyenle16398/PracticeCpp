@@ -70,7 +70,7 @@ void Input() {
 				cout << "Enter ID student: "; cin >> student->id;
 			
 			for(int i = 0; i < listStudent.size();i++){
-				if(student->id == listStudent[i]->id && listStudent[i] != NULL){
+				if(student->id == listStudent[i]->id){
 					duplicated = true;
 					cout<<"Duplicated"<<endl;
 					cin.clear();
@@ -78,7 +78,7 @@ void Input() {
 				}
 			}
 			}
-			while(duplicated = true);
+			while(duplicated = false);
 
 			cout << "Enter Fullname student: "; /*cin >> student->name;*/
 			cin.ignore();
