@@ -16,7 +16,7 @@ void DrawMenu();
 void Input();
 void Display(vector<Student*>);
 void SaveToFile(vector<Student*>);
-void LoadFromFile(vector<Student*>);
+int LoadFromFile(vector<Student*>);
 vector<Student*> listStudent;
 
 
@@ -38,6 +38,10 @@ int main() {
 		}
 		case 3:{
 			SaveToFile(listStudent);
+			break;
+		}
+		case 4:{
+			LoadFromFile(listStudent);
 			break;
 		}
 		case 0: {
@@ -115,7 +119,25 @@ void SaveToFile(vector<Student*> list) {
 	cout<<"Saved to file."<<endl;
 }
 
+int LoadFromFile(vector<Student*> list) {
+	ifstream fi;
+	fi.open("input.txt");
+	string data;
+	cout << "ID\tFULL NAME\tSCORE" << endl;
+	cout << "___________________________________________\n";
+	for (istreambuf_iterator<char, char_traits<char> > it(fi.rdbuf());
+		it != istreambuf_iterator<char, char_traits<char> >(); it++) {
 
+		data += *it;
+	}
+	cout << data.data()<<endl;
+	
+	
+
+
+	fi.close();
+	cout<<"Load from file."<<endl;
+}
 
 
 

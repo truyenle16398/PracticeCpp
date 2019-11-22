@@ -1,2 +1,3 @@
-3	asdasda	6
-2	asdasd	6
+1	Le Huy Truyen	6
+2	Nguyen Van Linh	9
+3	Nguyen Van A	5
