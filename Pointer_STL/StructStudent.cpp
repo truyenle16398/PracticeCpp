@@ -70,14 +70,15 @@ void Input() {
 				cout << "Enter ID student: "; cin >> student->id;
 			
 			for(int i = 0; i < listStudent.size();i++){
-				if(student->id == listStudent[i]->id){
+				if(student->id == listStudent[i]->id && listStudent[i] != NULL){
+					duplicated = true;
 					cout<<"Duplicated"<<endl;
 					cin.clear();
 					cout << "Enter ID student: ";cin >> student->id;
 				}
 			}
 			}
-			while(duplicated = false);
+			while(duplicated = true);
 
 			cout << "Enter Fullname student: "; /*cin >> student->name;*/
 			cin.ignore();
@@ -143,10 +144,6 @@ int LoadFromFile(vector<Student*> list) {
 		data += *it;
 	}
 	cout << data.data()<<endl;
-	
-	
-
-
 	fi.close();
 	cout<<"Load from file."<<endl;
 }
