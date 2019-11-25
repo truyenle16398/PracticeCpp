@@ -16,7 +16,6 @@ Virus::Virus(char * m_dna1, int m_res)
 {
 	m_dna = m_dna1;
 	m_resistance = m_res;
-	DoBorn();
 }
 
 
@@ -28,6 +27,7 @@ Virus::Virus(Virus & v)
 
 Virus::~Virus()
 {
+	//DoDie();
 }
 
 int Virus::LoadADNInformation​()
@@ -41,6 +41,7 @@ int Virus::LoadADNInformation​()
 	}
 	string dna;
 	getline(fi, dna);
+	this->m_dna = new char[dna.length() + 1];
 	for (int i = 0; i < dna.length(); i++)
 	{
 		this->m_dna[i] = dna[i];

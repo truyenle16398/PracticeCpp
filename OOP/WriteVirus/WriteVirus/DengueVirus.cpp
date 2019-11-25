@@ -5,11 +5,13 @@ using namespace std;
 
 DengueVirus::DengueVirus()
 {
+	DoBorn();
+	InitResistance();
 }
-
 
 DengueVirus::~DengueVirus()
 {
+	DoDie();
 }
 
 DengueVirus::DengueVirus(char *pro)

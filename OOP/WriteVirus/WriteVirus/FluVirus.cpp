@@ -8,12 +8,13 @@ using namespace std;
 
 FluVirus::FluVirus()
 {
+	DoBorn();
+	InitResistance();
 }
-
-
 
 FluVirus::~FluVirus()
 {
+	DoDie();
 }
 
 FluVirus::FluVirus(int color)
