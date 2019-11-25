@@ -4,10 +4,19 @@ class DengueVirus :
 	public Virus
 {
 private:
-	int m_protein[4];
+	char *m_protein = new char[4];
 public:
 	DengueVirus();
 	~DengueVirus();
+	DengueVirus(char*);
+
+	void SetProtein(char*);
+	char *GetProtein();
+
 	void DoBorn();
+	Virus *DoClone();
+	void DoDie();
+	void InitResistance();
+
 };
 

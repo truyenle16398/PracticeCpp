@@ -9,11 +9,14 @@ public:
 	FluVirus();
 	~FluVirus();
 	FluVirus(int);
+
+	void SetColor(int);
+	int GetColor();
+
 	void DoBorn();
 	Virus *DoClone();
 	void DoDie();
 	void InitResistance();
-	void SetColor(int);
-	int GetColor();
+	
 };
 
