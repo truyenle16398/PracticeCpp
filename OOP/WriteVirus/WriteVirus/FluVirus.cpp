@@ -55,7 +55,6 @@ void FluVirus::InitResistance()
 	if (m_color == RED)
 	{
 		 r = 10 + rand() % (20 + 1 - 10);
-
 	}
 	else
 	{

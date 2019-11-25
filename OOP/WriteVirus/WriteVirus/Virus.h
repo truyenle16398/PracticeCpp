@@ -12,7 +12,7 @@ public:
 	~Virus();
 
 	int LoadADNInformation​();
-	void ReduceResistance(int);
+	int ReduceResistance(int);
 
 	void SetADN(char*);
 	char *GetADN();

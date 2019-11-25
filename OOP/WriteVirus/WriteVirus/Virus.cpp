@@ -51,13 +51,14 @@ int Virus::LoadADNInformation​()
 
 }
 
-void Virus::ReduceResistance(int medicine_resistance)
+int Virus::ReduceResistance(int medicine_resistance)
 {
-	this->m_resistance -= medicine_resistance;
-	if (m_resistance <= 0)
+	return this->m_resistance -= medicine_resistance;
+	/*if (m_resistance <= medicine_resistance)
 	{
-		cout << "The virus was destroyed.";
-	}
+		cout << "The virus was destroyed."<<endl;
+	}*/
+	//cout << "con lai:" << this->m_resistance << endl;
 }
 
 void Virus::SetADN(char *adn)

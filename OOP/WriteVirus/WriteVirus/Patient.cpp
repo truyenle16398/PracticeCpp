@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "Patient.h"
 #include "FluVirus.h"
 #include "DengueVirus.h"
@@ -6,16 +6,15 @@
 #include<list>
 using namespace std;
 
-
 Patient::Patient()
 {
+	InitResistance();
+	DoStart();
 }
 
 
 Patient::~Patient()
 {
-	InitResistance();
-	DoStart();
 }
 
 Patient::Patient(int resis, list<Virus*> list, int state)
@@ -44,7 +43,9 @@ int Patient::InitResistance()
 void Patient::DoStart()
 {
 	m_state = 1;
+	int countFlu = 0, countDen = 0;
 	int amountVirus = 10 + rand() % (20 + 1 - 10);
+	cout << "Amount Virus: " << amountVirus << endl;
 	for (int i = 0; i < amountVirus; i++)
 	{
 		int kindOfVirus = rand();
@@ -52,13 +53,19 @@ void Patient::DoStart()
 		{
 			Virus *virusFlu = new FluVirus();
 			this->m_virusList.push_back(virusFlu);
+			//cout << "Added Flu" << endl;
+			countFlu++;
 		}
 		else
 		{
 			Virus *virusDengue = new DengueVirus();
 			this->m_virusList.push_back(virusDengue);
+			//cout << "Added Den" << endl;
+			countDen++;
 		}
 	}
+	cout << "Flu: " << countFlu << endl << "Den: " << countDen << endl;
+	
 }
 void Patient::DoDie()
 {
@@ -73,20 +80,28 @@ void Patient::SetState(int state)
 
 void Patient::TakeMedicine()
 {
-	//list<Virus*> myList;
 	list<Virus*>::iterator it;
+
+	int amountVirus = m_virusList.size();
+	//cout << "so luong ban dau: " << amountVirus << endl;
+
 	for (it = m_virusList.begin(); it != m_virusList.end(); it++) {
+
 		(*it)->ReduceResistance(1+rand()%(60+1-1));
-		if ((*it)->GetResistance() > 0)
-		{
-			//(*it)->DoClone();
-			this->m_virusList.push_back((*it)->DoClone());//!!!!!note!!!!!
+
+		if ((*it)->GetResistance() > 0) {
+
+			this->m_virusList.push_back((*it)->DoClone());
+			//cout << "add" << endl;
 		}
 		else
 		{
 			(*it)->DoDie();
+			//cout << "died" << endl;
+			m_virusList.remove(nullptr);
 		}
 	}
+	cout <<"Amount Virus after TakeMedicine: " <<this->m_virusList.size() - amountVirus<< endl;
 }
 
 int Patient::GetState()
