@@ -30,6 +30,8 @@
 *.la
 *.a
 *.lib
+*.pptx
+*.7z
 
 # Executables
 *.exe
