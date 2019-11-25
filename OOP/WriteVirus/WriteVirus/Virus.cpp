@@ -16,13 +16,14 @@ Virus::Virus(char * m_dna1, int m_res)
 {
 	m_dna = m_dna1;
 	m_resistance = m_res;
+	DoBorn();
 }
 
 
 Virus::Virus(Virus & v)
 {
-	m_dna = v.m_dna;
-	m_resistance = v.m_resistance;
+	this->m_dna = v.m_dna;
+	this->m_resistance = v.m_resistance;
 }
 
 Virus::~Virus()
@@ -51,6 +52,29 @@ int Virus::LoadADNInformation​()
 
 void Virus::ReduceResistance(int medicine_resistance)
 {
-	m_resistance -= medicine_resistance;
+	this->m_resistance -= medicine_resistance;
+	if (m_resistance <= 0)
+	{
+		cout << "The virus was destroyed.";
+	}
 }
 
+void Virus::SetADN(char *adn)
+{
+	this->m_dna = adn;
+}
+
+char *Virus::GetADN()
+{
+	return this->m_dna;
+}
+
+void Virus::SetResistance(int resistance)
+{
+	this->m_resistance = resistance;
+}
+
+int Virus::GetResistance()
+{
+	return this->m_resistance;
+}

@@ -6,12 +6,22 @@ private:
 	int m_resistance;
 public:
 	Virus();
-	Virus(char *m_dna1, int m_res);
+	Virus(char*, int);
 	//Copy contrustor
-	Virus(Virus &v);
+	Virus(Virus&);
 	~Virus();
+
 	int LoadADNInformation​();
-	void ReduceResistance(int medicine_resistance);
-	virtual void DoBorn();
+	void ReduceResistance(int);
+
+	void SetADN(char*);
+	char *GetADN();
+	void SetResistance(int);
+	int GetResistance();
+
+	virtual void DoBorn() = 0;
+	virtual Virus *DoClone() = 0;
+	virtual void DoDie() = 0;
+	virtual void InitResistance() = 0;
 };
 
