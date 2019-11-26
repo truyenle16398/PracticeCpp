@@ -36,12 +36,8 @@ void FluVirus::DoBorn()
 
 Virus * FluVirus::DoClone()
 {
-	/*Virus *flu = new FluVirus(GetColor());
-	flu->SetADN(GetADN());
-	flu->SetResistance(GetResistance());
-	return flu;*/
 	Virus *flu = new FluVirus(*this);
-	
+	delete flu;
 	return flu;
 }
 

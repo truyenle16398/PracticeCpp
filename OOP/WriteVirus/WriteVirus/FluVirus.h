@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "Virus.h"
+#include<list>
 class FluVirus :
 	public Virus
 {

@@ -1,6 +1,7 @@
 ﻿#include "stdafx.h"
 #include "DengueVirus.h"
 #include<iostream>
+//#include<list>
 using namespace std;
 
 DengueVirus::DengueVirus()
@@ -51,13 +52,8 @@ void DengueVirus::DoBorn()
 
 Virus * DengueVirus::DoClone()
 {
-	/*Virus *den = new DengueVirus(GetProtein());
-	den->SetADN(GetADN());
-	den->SetResistance(GetResistance());//use copy func
-	return den;*/
-
 	Virus *den = new DengueVirus(*this);
-
+	delete den;
 	return den;
 }
 

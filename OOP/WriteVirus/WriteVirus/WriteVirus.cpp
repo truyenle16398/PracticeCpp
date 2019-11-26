@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <cstdlib>
 #include<time.h>
+#include <vld.h>
 
 using namespace std;
 int main()
