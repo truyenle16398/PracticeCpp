@@ -80,12 +80,28 @@ void Patient::SetState(int state)
 
 void Patient::TakeMedicine()
 {
-	list<Virus*>::iterator it;
+	list<Virus*>::iterator it1,it2;
 
 	int amountVirus = m_virusList.size();
+	it1 = it2 = m_virusList.begin();
+	for (int i = 0; i < m_virusList.size(); i++)
+	{
+		it2++;
+		(*it1)->ReduceResistance(1 + rand() % (60 + 1 - 1));
+		if ((*it1)->GetResistance() > 0)
+		{
+			this->m_virusList.push_back((*it1)->DoClone());
+		}
+		else
+		{
+			(*it1)->DoDie();
+			this->m_virusList.erase(it1);
+			it1 = it2;
+		}
+	}
 	//cout << "so luong ban dau: " << amountVirus << endl;
 
-	for (it = m_virusList.begin(); it != m_virusList.end(); it++) {
+	/*for (it = m_virusList.begin(); it != m_virusList.end();) {
 
 		(*it)->ReduceResistance(1+rand()%(60+1-1));
 
@@ -97,11 +113,13 @@ void Patient::TakeMedicine()
 		else
 		{
 			(*it)->DoDie();
+			this->m_virusList.erase(it);
+			it++;
 			//cout << "died" << endl;
-			m_virusList.remove(nullptr);
+			//m_virusList.remove(nullptr);
 		}
-	}
-	cout <<"Amount Virus after TakeMedicine: " <<this->m_virusList.size() - amountVirus<< endl;
+	}*/
+	cout <<"Amount Virus after TakeMedicine: " <<this->m_virusList.size()<< endl;
 }
 
 int Patient::GetState()
