@@ -83,20 +83,19 @@ void Patient::TakeMedicine()
 	list<Virus*>::iterator it1,it2;
 
 	int amountVirus = m_virusList.size();
-	it1 = it2 = m_virusList.begin();
-	for (int i = 0; i < m_virusList.size(); i++)
+	it1 = m_virusList.begin();
+	for (int i = 0; i < m_virusList.size();)
 	{
-		it2++;
-		(*it1)->ReduceResistance(1 + rand() % (60 + 1 - 1));
+		(*it1)->ReduceResistance(1 + rand() % (10 + 1 - 1));
 		if ((*it1)->GetResistance() > 0)
 		{
 			this->m_virusList.push_back((*it1)->DoClone());
+			i++;
 		}
 		else
 		{
 			(*it1)->DoDie();
-			this->m_virusList.erase(it1);
-			it1 = it2;
+			it1 = this->m_virusList.erase(it1);
 		}
 	}
 	//cout << "so luong ban dau: " << amountVirus << endl;

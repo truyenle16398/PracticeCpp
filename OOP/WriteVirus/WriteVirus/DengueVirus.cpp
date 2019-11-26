@@ -51,9 +51,13 @@ void DengueVirus::DoBorn()
 
 Virus * DengueVirus::DoClone()
 {
-	Virus *den = new DengueVirus(GetProtein());
+	/*Virus *den = new DengueVirus(GetProtein());
 	den->SetADN(GetADN());
-	den->SetResistance(GetResistance());
+	den->SetResistance(GetResistance());//use copy func
+	return den;*/
+
+	Virus *den = new DengueVirus(*this);
+
 	return den;
 }
 
